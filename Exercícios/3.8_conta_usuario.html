@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>3.8 - Conta usuário</title>
+		<style>
+			p{
+				background-color: #fefbf3;
+				padding: 15px;
+			}
+		</style>
+	</head>
+	<body>
+		<div ng-controller="ContaController">
+			<h2 app-conta-directive></h2>
+			<hr />
+			<p>Bem vindo {{cliente.nome}}</p>
+			<hr />
+			<footer>
+				<div app-conta-directive></div>
+			</footer>
+		</div>
+		<!-- SCRIPTS -->
+		<script type="text/javascript" src="assets/js/libs/angular.min.js"></script>
+		<script type="text/javascript">
+			angular.module('myApp', [])
+			.controller('ContaController', function($scope){
+				$scope.cliente = {
+					nome: 'Jonny',
+					conta: '8292',
+					agencia: '900838-11'
+				};
+			})
+			.directive('appContaDirective', function(){
+				return {
+					template: 'Nome: {{cliente.nome}} Conta: {{cliente.conta}} Ag: {{cliente.agencia}}'
+				};
+			});
+
+			/* ---------------------------- OU ---------------------------- */
+
+			var app = angular.module('myApp', []);
+
+			app.controller('ContaController', function($scope){
+				$scope.cliente = {
+					nome: 'Jonny',
+					conta: '8292',
+					agencia: '900838-11'
+				};
+			})
+
+			app.directive('appContaDirective', function(){
+				return {
+					template: 'Nome: {{cliente.nome}} Conta: {{cliente.conta}} Ag: {{cliente.agencia}}'
+				};
+			});
+		</script>
+	</body>
+</html>

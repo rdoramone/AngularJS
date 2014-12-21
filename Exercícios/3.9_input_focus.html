@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>3.9 - Input focus</title>
+	</head>
+	<body>
+		<input type="text">
+		<br>
+		<input type="text">
+		<br>
+		<input type="text" apply-focus>
+		<br>
+		<input type="text">
+		<br>
+		<!-- SCRIPTS -->
+		<script type="text/javascript" src="assets/js/libs/angular.min.js"></script>
+		<script type="text/javascript">
+			angular.module('myApp', []).directive('applyFocus', function(){
+				return {
+					link: function(scope, element, attrs){
+						element[0].focus();
+					}
+				};
+			});
+		</script>
+	</body>
+</html>

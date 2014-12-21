@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>3.10 - Random position</title>
+	</head>
+	<body>
+		
+		<span random-position>element</span>
+
+		<!-- SCRIPTS -->
+		<script type="text/javascript" src="assets/js/libs/angular.min.js"></script>
+		<script type="text/javascript">
+			angular.module('myApp', [])
+			.directive('randomPosition', function(){
+				return function(scope, element, attr){
+					var x = 0, 
+						y = 0;
+
+					element.css({
+						bakcgroundColor: '#f2f2f2',
+						border: '1px dashed #cccccc',
+						cursor: 'pointer',
+						marginTop: '5px',
+						padding: '10px',
+						position: 'relative'
+					});
+
+					element.attr('title', 'Click me');
+
+					element.on('click', mouseclick);
+
+					function mouseclick(event){
+						y = Math.floor((Math.random() * event.pageY) + 1);
+						x = Math.floor((Math.random() * event.pageX) + 1);
+
+						element.css({
+							top: y + 'px',
+							left: x + 'px'
+						});
+					}
+				};
+			});
+		</script>
+	</body>
+</html>

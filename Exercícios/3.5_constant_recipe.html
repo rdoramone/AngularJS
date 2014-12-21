@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>3.5 - Constant recipe</title>
+	</head>
+	<body>
+		<div ng-controller="TwitterController">
+			<span><b>Token as constant:</b> {{token}}</span>
+		</div>
+		<!-- SCRIPTS -->
+		<script type="text/javascript" src="assets/js/libs/angular.min.js"></script>
+		<script type="text/javascript">
+			var app = angular.module('myApp', []);
+
+				app.constant('$twitterApiToken', 'YTEyMzQ1NjU0MzIxeA=='); // Declaração do token, como constant
+
+				app.controller('TwitterController', ['$scope', '$twitterApiToken', function($scope, $twitterApiToken){
+					$scope.token = $twitterApiToken;
+				}])
+		</script>
+	</body>
+</html>
