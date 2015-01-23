@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>4.7 - css class map</title>
+		<style type="text/css">
+			.error{
+				background-color: #f00;
+			}
+
+			.warning{
+				background-color: #ff0;
+			}
+		</style>
+	</head>
+	<body>
+		<div ng-controller="ClassController">
+			<div ng-class="{error:isError, warning: isWarning}">Eu sou um texto</div>
+			<button ng-click="showError()">Simular Error</button>
+			<button ng-click="showWarning()">Simular Warning</button>
+		</div>
+		<!-- SCRIPTS -->
+		<script type="text/javascript" src="assets/js/libs/angular.min.js"></script>
+		<script type="text/javascript">
+			var app = angular.module('myApp', []);
+
+			app.controller('ClassController', ['$scope',function($scope){
+				$scope.isError = false;
+				$scope.isWarning = false;
+				
+				$scope.showError = function(){
+					$scope.isError = true;
+					$scope.isWarning = false;
+				}
+
+				$scope.showWarning = function(){
+					$scope.isError = false;
+					$scope.isWarning = true;
+				}
+			}]);
+		</script>
+	</body>
+</html>

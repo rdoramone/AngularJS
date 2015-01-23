@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>5.2 - Filtro com parametro</title>
+	</head>
+	<body>
+		<div ng-controller="UsuarioController">
+			<div>Uppercase: {{nome | lettercase:'upper'}}!</div>
+			<br>
+			<div>Lowercase: {{nome | lettercase:'lower'}}!</div>
+		</div>
+		<!-- SCRIPTS -->
+		<script type="text/javascript" src="assets/js/libs/angular.min.js"></script>
+		<script type="text/javascript">
+			var app = angular.module('myApp', []);
+
+			app.controller('UsuarioController', ['$scope', function($scope){
+				$scope.nome = 'Ricardo';
+			}]);
+
+			app.filter('lettercase', function(){
+				return function(input, mode){
+					return mode == 'upper' ? input.toUpperCase() : input.toLowerCase();
+				};
+			});
+		</script>
+	</body>
+</html>

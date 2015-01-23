@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>4.1 - formulario</title>
+	</head>
+	<body>
+		<div ng-controller="FormController">
+			<form action="" novalidate="novalidate">
+				Nome: <input type="text" ng-model="usuario.nome"><br>
+				Sexo: <input type="radio" ng-model="usuario.sexo" value="M" />Masculino
+				<input type="radio" ng-model="usuario.sexo" value="F" />Feminino
+				<button ng-click="salvar(usuario)">Salvar</button>
+			</form>
+			<b>{{usuario | json}}</b>
+		</div>
+		<!-- SCRIPTS -->
+		<script type="text/javascript" src="assets/js/libs/angular.min.js"></script>
+		<script type="text/javascript">
+			var app = angular.module('myApp', []);
+
+			app.controller('FormController', ['$scope', function($scope){
+				$scope.salvar = function(usuario){
+					this.usuario = {}; // fake impl
+				}
+			}]);
+		</script>
+	</body>
+</html>
