@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>6.4 - Scope directive bindings</title>
+	</head>
+	<body ng-controller="ParentController">
+		<div>
+			<span>Contador-pai:{{count}}</span>
+			<br>
+			<button ng-click="incrementCount()">Increment Contador-pai</button>
+			<br>
+			<div my-dir count-alert-handler="alertCount(label, parentControllerCount)" count="count" label=" Total: " />
+		</div>
+
+		<!-- SCRIPTS -->
+		<script type="text/javascript" src="assets/js/libs/angular.min.js"></script>
+		<script type="text/javascript">
+			angular.module('myApp', [])
+				.controller('ParentController', function ($scope) {
+					$scope.count = 1; // scope Pai
+					$scope.alertCount = function(label, parentControllerCount){
+						window.alert(label + ' ' + parentControllerCount);
+					}
+					$scope.incrementCount = function(){
+						$scope.count++;
+					}
+				})
+				.directive('myDir', function () {
+					return {
+						scope: {
+							count: '=',
+							countAlertHandler: '&',
+							label: '@'
+						},
+						link: function (scope, iElement, iAttrs) {
+							var button = angular.element('<button>Alert Parent Count</button>');
+							button.on('click', function(){
+								scope.countAlertHandler({label: scope.label, parentControllerCount: scope.count});
+							});
+							iElement.append(button);
+						}
+					};
+				});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>6.3 - Isolated scope directive</title>
+	</head>
+	<body ng-controller="ParentController">
+		<div>
+			<span>-scope: object</span>
+			<br>
+			<span>Parent Count:{{count}}</span>
+			<div my-dir />
+		</div>
+
+		<!-- SCRIPTS -->
+		<script type="text/javascript" src="assets/js/libs/angular.min.js"></script>
+		<script type="text/javascript">
+			angular.module('myApp', [])
+				.controller('ParentController', function($scope){
+					$scope.count = 10; //scope Pai
+				})
+				.directive('myDir', function () {
+					return {
+						scope: {},
+						template: 'Inherit Parent Count: {{count}}'
+					};
+				});
+		</script>
+	</body>
+</html>
