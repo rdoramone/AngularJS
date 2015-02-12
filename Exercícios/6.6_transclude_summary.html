@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>6.6 - Transclude summary</title>
+		<style>
+			div p{
+				border: 1px solid #f1f1f1;
+				font-size: 12px;
+			}
+		</style>
+	</head>
+	<body>
+		<div summary title="Foursquare aposenta 'check-in' e promete busca local personalizada">
+			<p>Linha 1</p>
+			<p>Linha 2</p>
+		</div>
+		<div summary title="Twitter é legal mas tem muita coisa q não consigo ver direito....rsrsrs">
+			<p>Paragráfo 1</p>
+			<p>Paragráfo 2</p>
+		</div>
+
+		<!-- SCRIPTS -->
+		<script type="text/javascript" src="assets/js/libs/angular.min.js"></script>
+		<script type="text/javascript">
+			angular.module('myApp', [])
+				.directive('summary', function(){
+					return {
+						scope: {
+							title: '@'
+						},
+						transclude: true,
+						template:
+							'<div>' +
+								'<details>' +
+									'<summary>{{title}}</summary>' +
+									'<div ng-transclude></div>' +
+								'</details>' +
+							'</div>'
+					};
+				});
+		</script>
+	</body>
+</html>

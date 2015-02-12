@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>7.1 - Compile linking sim</title>
+	</head>
+	<body>
+		<h4>- Ciclo de inicialização - Simulação por meio de diretiva -</h4>
+		<div bootstrap />
+
+		<!-- SCRIPTS -->
+		<script type="text/javascript" src="assets/js/libs/angular.min.js"></script>
+		<script type="text/javascript">
+			var app = angular.module('app', []);
+
+			app.directive('bootstrap', ['$compile', '$rootScope', function($compile, $rootScope){
+				return function(scope, element, attrs){
+					/*
+					** Configuração hipotética do escopo
+					*/
+
+					$rootScope.total = 0;
+					$rootScope.increment = function(){
+						$rootScope.total++;
+					}
+
+					// Simulando template encontrado pelo AngularJS, baseado na diretiva ng-app
+					var template = angular.element('<p><b>Total</b>: {{total}}</p><button ng-click="increment()">Incrementar Total</button>');
+					// Compile phase - compila o template
+					var linkFn = $compile(template);
+					// Linking phase - Efetua linkagem, baseado no retorno da fase de compilação
+					var liveView = linkFn($rootScope);
+					// Finalmente inclui a 'Live View' no DOM
+					element.append(liveView);
+				};
+			}]);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="lifecycle">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>6.8 Directive lifecycle pre post</title>
+		<style type="text/css">
+			div > div{
+				background-color: #ddd;
+				padding: 5px;
+			}
+			div > div > div{
+				padding: 5px;
+				background-color: #ccc;
+			}
+			h3{
+				color: orange;
+			}
+			.legend{
+				position: relative;
+				float: left;
+				margin: 4px;
+			}
+			#compile, #controller, #pre-link, #post-link{
+				position: relative;
+				float: left;
+				height: 10px;
+				width: 10px;
+				margin: 2px;
+			}
+			#compile{
+				background-color: orange;
+			}
+			#controller{
+				background-color: blue;
+			}
+			#pre-link{
+				background-color: red;
+			}
+			#post-link{
+				background-color: green;
+			}
+			.compile-type{
+				color: orange;
+			}
+			.controller-type{
+				color: blue;
+			}
+			.pre-link-type{
+				color: red;
+			}
+			.post-link-type{
+				color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<h3>DOM</h3>
+		<fieldset>
+			<legend>Node</legend>
+			<div lifecycle-of="Parent Node">
+				<div lifecycle-of="-Node 1">
+					<div lifecycle-of="--Node 1.1"></div>
+					<div lifecycle-of="--Node 1.2"></div>
+				</div>
+				<div lifecycle-of="-Node 2">
+					<div lifecycle-of="--Node 2.1"></div>
+					<div lifecycle-of="--Node 2.2"></div>
+				</div>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Legenda</legend>
+			<div class="legend"><div id="compile"></div><span>compile</span></div>
+			<div class="legend"><div id="controller"></div><span>controller</span></div>
+			<div class="legend"><div id="pre-link"></div><span>pre-link</span></div>
+			<div class="legend"><div id="post-link"></div><span>post-link</span></div>
+		</fieldset>
+		<h3>Ciclo de Vida</h3>
+		<pre id="output"></pre>
+
+		<!-- SCRIPTS -->
+		<script type="text/javascript" src="assets/js/libs/angular.min.js"></script>
+		<script type="text/javascript">
+			angular.module('lifecycle', []).directive('lifecycleOf', function(){
+				function targetEl(){
+					return angular.element(document.getElementById('output'));
+				};
+				function append(fragment){
+					targetEl().append(fragment);
+				};
+				return {
+					controller: function($scope, $attrs){
+						append($attrs.lifecycleOf + " (<b class='controller-type'>controller</b>)<br />");
+					},
+					compile: function compile(element, attributes){
+						append(attributes.lifecycleOf + " (<b class='compile-type'>compile</b>)<br />");
+						return {
+							pre: function preLink(scope, element, attributes){
+								append(attributes.lifecycleOf + "(<b class='pre-link-type'>pre-link</b>)<br />");								
+							},
+							post: function postLink(scope, element, attributes){
+								append(attributes.lifecycleOf + "(<b class='post-link-type'>post-link</b>)<br />");
+							}
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
