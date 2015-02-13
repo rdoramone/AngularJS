@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>7.2 - Eval async timeout</title>
+	</head>
+	<body>
+		<div run-tasks />
+
+		<!-- SCRIPTS -->
+		<script type="text/javascript" src="assets/js/libs/angular.min.js"></script>
+		<script type="text/javascript">
+			angular.module('app', []).directive('runTasks', ['$timeout', function($timeout){
+				return {
+					link: function(scope, element, attrs, controller){
+						// Assinatura do $timeout => $timeout(fn, miliseconds)
+						// Executa agora
+						$timeout(function(){
+							element.append('<p><i>$timeout 1</i> executa após $evalAsync!</p>');
+						}, 1000);
+						scope.$evalAsync(function($scope){
+							element.append('<p><b>$evalAsync</b> executa primeiro!</p>');
+						});
+						$timeout(function(){
+							element.append('<p><i>$timeout 2</i> executa após $evalAsync!</p>');
+						}, 2000);
+					}
+				};
+			}]);
+		</script>
+	</body>
+</html>
