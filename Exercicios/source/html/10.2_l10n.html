@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>10.2 - l10n</title>
+		<style type="text/css">
+			body{
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body ng-controller="ctrl">
+		<p>
+			<a href="#" ng-click="setLang('en_US')">English</a>|
+			<a href="#" ng-click="setLang('pt_BR')">Português</a>
+		</p>
+		<h2>{{'buddle.info' | translate}}</h2>
+		<div>{{'buddle.info' | translate}}</div>
+		<small>{{'buddle.info' | translate}}</small>
+
+		<!-- SCRIPTS -->
+		<script type="text/javascript" src="assets/js/libs/angular.min.js"></script>
+		<script type="text/javascript" src="assets/js/libs/angular-cookies.min.js"></script>
+		<script type="text/javascript" src="assets/js/libs/angular-translate.min.js"></script>
+		<script type="text/javascript" src="assets/js/libs/angular-translate-storage-cookie.min.js"></script>
+		<script type="text/javascript" src="assets/js/libs/angular-translate-loader-url.min.js"></script>	
+		<script type="text/javascript">
+			angular.module('myApp', ['pascalprecht.translate', 'ngCookies'])
+			.config(['$translateProvider', function($translateProvider){
+				$translateProvider.userUrlLoader(getContextPath() + '/l10n/');
+				$translateProvider.preferredLanguage('en_US');
+				$translateProvider.useCoookieStorage();
+			}])
+			.controller('ctrl', ['$scope', '$translate', function($scope, $translate){
+				$scope.setLang = function(langKey){
+					$translate.use(langKey);
+				};
+			}]);
+
+			function getContextPath(){
+				return '/' + window.location.pathname.split('/')[1];
+			}
+		</script>
+	</body>
+</html>
