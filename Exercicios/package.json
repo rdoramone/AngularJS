@@ -1,0 +1,19 @@
+{
+  "name": "AngularJS",
+  "version": "1.0.0",
+  "description": "Exercícios de Angular JS. Exercícios retirados do livro 'Angular JS - Uma abordagem prática e objetiva'",
+  "main": "Gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^1.5.5",
+    "config": "~1.2.1",
+    "event-stream": "^3.1.7",
+    "gulp": "^3.8.8",
+    "gulp-notify": "^2.0.0"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "author": "Ricardo Ferreira",
+  "license": "ISC"
+}
