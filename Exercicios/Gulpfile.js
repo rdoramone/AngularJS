@@ -31,7 +31,7 @@ var configBrowserSyncDev = {
 	port: 3000,
 	server: {
 		baseDir: pathPublic,
-		index: '10.2_l10n.html'
+		index: '9.1_rotas_hashbang.html'
 	}
 }
 
