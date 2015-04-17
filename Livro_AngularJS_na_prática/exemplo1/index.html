@@ -1,0 +1,36 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Teste Angular JS</title>
+    <script src="../js/angular.min.js"></script>
+    <!--<script src="../js/controllers/simpleController.js"></script>-->
+    <!--<script src="../js/controllers/countController.js"></script>-->
+    <!--<script src="../js/controllers/loopController.js"></script>-->
+</head>
+<!--          Exemplo 1
+<body ng-controller="simpleController">
+	Hello <input type="text" ng-model="user.name" />
+	<hr />
+	<h1>Hello {{user.name}}</h1>
+</body> -->
+<!--          Exemplo 2
+<body ng-controller="countController">
+	<a href="#" ng-click="addOne()">Add 1</a>
+	<hr />
+	<p>Counter value: {{counter}}</p>
+</body> -->
+<!--          Exemplo 2
+<body ng-controller="loopController">
+	<ul>
+		<li ng-repeat="fruit in fruits">{{fruit}}</li>
+	</ul>
+</body>-->
+<body>
+	<form action="" name="myForm">
+		<span ng-show="myForm.$invalid">Found erross in the form!</span>
+		<input type="text" ng-model="name" value="Your Name" required />
+		<button ng-disabled="myForm.$invalid">Save</button>
+	</form>
+</body>
+</html>

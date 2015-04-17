@@ -48,5 +48,7 @@ Temporary Items
 # Ignoring Folder Node Modules
 ==============================
 
-Exercicios/node_modules/*
-Exercicios/public/*
+Livro_AngularJS_na_prática/node_modules/*
+Livro_AngularJS_na_prática/public/*
+Livro_AngularJS_Uma_abordagem_prática_e_objetiva/node_modules/*
+Livro_AngularJS_Uma_abordagem_prática_e_objetiva/public/*
